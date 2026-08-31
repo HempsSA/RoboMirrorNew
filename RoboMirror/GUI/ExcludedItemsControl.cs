@@ -17,9 +17,11 @@ namespace RoboMirror.GUI
 	{
 		private string _baseFolder;
 
-		public ExcludedItemsMode Mode { get; set; }
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+	public ExcludedItemsMode Mode { get; set; }
 
-		public string BaseFolder
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+	public string BaseFolder
 		{
 			get { return _baseFolder; }
 			set

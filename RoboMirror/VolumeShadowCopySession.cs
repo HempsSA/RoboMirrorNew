@@ -177,7 +177,7 @@ namespace RoboMirror
 
 					CheckForDisposeRequest();
 
-					_backup = VssUtils.LoadImplementation().CreateVssBackupComponents();
+					_backup = VssFactoryProvider.Default.GetVssFactory().CreateVssBackupComponents();
 					_backup.InitializeForBackup(null);
 					_backup.SetContext(VssSnapshotContext.Backup);
 					_backup.SetBackupState(false, false, VssBackupType.Copy, false);

@@ -26,7 +26,7 @@ namespace RoboMirror
 		public long TotalSize { get { return Interlocked.Read(ref _totalSizeBacking); } }
 
 		private int _errorCount;
-		public int ErrorCount { get { return Thread.VolatileRead(ref _errorCount); } }
+		public int ErrorCount { get { return Interlocked.CompareExchange(ref _errorCount, 0, 0); } }
 		internal void IncrementErrorCount() { Interlocked.Increment(ref _errorCount); }
 	}
 
