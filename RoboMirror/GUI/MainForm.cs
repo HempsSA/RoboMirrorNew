@@ -9,6 +9,7 @@ using Microsoft.Win32.TaskScheduler;
 using RoboMirror.Properties;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace RoboMirror.GUI
 	public partial class MainForm : BaseForm
 	{
 		private TaskManager _taskManager;
+		private ToolStripMenuItem _darkModeMenuItem;
 
 
 		/// <summary>
@@ -40,7 +42,11 @@ namespace RoboMirror.GUI
 		{
 			InitializeComponent();
 
+			ThemeManager.DarkMode = Properties.Settings.Default.DarkMode;
+
 			HideQueuePanel();
+
+			SetupDarkModeToggle();
 
 			backupButton.Font = new System.Drawing.Font(Font, System.Drawing.FontStyle.Bold);
 
@@ -55,6 +61,25 @@ namespace RoboMirror.GUI
 			// select the first item
 			if (listView1.Items.Count > 0)
 				listView1.SelectedIndices.Add(0);
+		}
+
+
+		private void SetupDarkModeToggle()
+		{
+			_darkModeMenuItem = new ToolStripMenuItem("Dark Mode");
+			_darkModeMenuItem.Checked = ThemeManager.DarkMode;
+			_darkModeMenuItem.Click += (s, e) =>
+			{
+				ThemeManager.DarkMode = !ThemeManager.DarkMode;
+				_darkModeMenuItem.Checked = ThemeManager.DarkMode;
+				Properties.Settings.Default.DarkMode = ThemeManager.DarkMode;
+				Properties.Settings.Default.Save();
+			};
+
+			// add to context menu of the about picture box
+			var menu = new ContextMenuStrip();
+			menu.Items.Add(_darkModeMenuItem);
+			pictureBox1.ContextMenuStrip = menu;
 		}
 
 

@@ -122,8 +122,20 @@ namespace RoboMirror.GUI
 		{
 			var rectangle = ClientRectangle;
 
-			using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(new Point(0, 0), new Point(0, rectangle.Height), Color.White, Color.LightGray))
-				e.Graphics.FillRectangle(brush, e.ClipRectangle);
+			if (ThemeManager.DarkMode)
+			{
+				using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
+					new Point(0, 0), new Point(0, rectangle.Height),
+					ThemeManager.DarkColors.Surface, ThemeManager.DarkColors.Background))
+					e.Graphics.FillRectangle(brush, e.ClipRectangle);
+			}
+			else
+			{
+				using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
+					new Point(0, 0), new Point(0, rectangle.Height),
+					Color.White, Color.LightGray))
+					e.Graphics.FillRectangle(brush, e.ClipRectangle);
+			}
 		}
 
 		private static string FormatSize(long bytes)

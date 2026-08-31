@@ -8,5 +8,8 @@
     <Setting Name="RobocopySwitches" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/z /e /fft /r:12 /w:5 /tbd /np</Value>
     </Setting>
+    <Setting Name="DarkMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
