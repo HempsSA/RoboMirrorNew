@@ -6,6 +6,7 @@
  */
 
 using System;
+using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 
@@ -17,6 +18,8 @@ namespace RoboMirror
 		[STAThread]
 		static void Main()
 		{
+			// Register code page encodings (OEM 437 etc.) needed by robocopy
+			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 			AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 			Application.ThreadException += OnThreadException;
 
