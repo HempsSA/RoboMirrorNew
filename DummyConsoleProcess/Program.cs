@@ -8,7 +8,7 @@ namespace DummyConsoleProcess
 	{
 		static void Main(string[] args)
 		{
-			Environment.ExitCode = -1;
+			Environment.ExitCode = 1; // exit code 1 = copies pending (robocopy convention)
 
 			// Output 20 lines over ~2 seconds to simulate robocopy behavior
 			for (int i = 1; i <= 20; ++i)
