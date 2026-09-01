@@ -13,8 +13,10 @@
   </PropertyGroup>
 
   <Target Name="CopyDummyConsoleProcess" AfterTargets="Build">
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\DummyConsoleProcess\bin\$(Configuration)\net10.0-windows\DummyConsoleProcess.exe" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\DummyConsoleProcess\bin\$(Configuration)\net10.0-windows\DummyConsoleProcess.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <ItemGroup>
+      <DummyFiles Include="$(MSBuildProjectDirectory)\..\DummyConsoleProcess\bin\$(Configuration)\net10.0-windows\DummyConsoleProcess.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(DummyFiles)" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
   </Target>
 
   <ItemGroup>
